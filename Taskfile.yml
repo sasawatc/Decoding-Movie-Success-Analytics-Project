@@ -1,0 +1,16 @@
+version: '3'
+
+env:
+  PYENV_VERSION: 3.12
+
+tasks:
+  init:
+    desc: Init for local dev
+    cmds:
+      - rm -rf .venv
+      - python --version && python -m venv .venv
+      - .venv/bin/pip install --upgrade pip wheel
+      - .venv/bin/pip install -r requirements.txt
+  shell:
+    cmds:
+      - source .venv/bin/activate
