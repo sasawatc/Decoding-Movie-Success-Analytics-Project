@@ -14,3 +14,6 @@ tasks:
   shell:
     cmds:
       - source .venv/bin/activate
+  download_imdb:
+    cmds:
+      - .venv/bin/python data-source-ingester/download_files.py
