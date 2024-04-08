@@ -1,10 +1,25 @@
 import asyncio
 import httpx
+import logging
 import os
+from pathlib import Path
 from tqdm import tqdm
 
 
 DOWNLOAD_DIR = "data-source-ingester/downloads"
+
+DOWNLOAD_URLS = [
+        ("https://datasets.imdbws.com/name.basics.tsv.gz", "name_basics.tsv.gz"),
+        ("https://datasets.imdbws.com/title.akas.tsv.gz", "title_akas.tsv.gz"),
+        ("https://datasets.imdbws.com/title.basics.tsv.gz", "title_basics.tsv.gz"),
+        ("https://datasets.imdbws.com/title.crew.tsv.gz", "title_crew.tsv.gz"),
+        ("https://datasets.imdbws.com/title.crew.tsv.gz", "title_episode.tsv.gz"),
+        (
+            "https://datasets.imdbws.com/title.principals.tsv.gz",
+            "title_principals.tsv.gz",
+        ),
+        ("https://datasets.imdbws.com/title.ratings.tsv.gz", "title_ratings.tsv.gz"),
+    ]
 
 
 async def download(url: str, filename: str, output_dir: str):
@@ -35,26 +50,18 @@ async def download(url: str, filename: str, output_dir: str):
                         downloaded = get_request.num_bytes_downloaded
 
 
-async def main():
-    """
-    Downloading three large files simultaneously.
-    Each file has its own progress bar.
-    """
+async def downloader(urls: list):
     loop = asyncio.get_running_loop()
-    urls = [
-        ("https://datasets.imdbws.com/name.basics.tsv.gz", "name.basics.tsv.gz"),
-        ("https://datasets.imdbws.com/title.akas.tsv.gz", "title.akas.tsv.gz"),
-        ("https://datasets.imdbws.com/title.basics.tsv.gz", "title.basics.tsv.gz"),
-        ("https://datasets.imdbws.com/title.crew.tsv.gz", "title.crew.tsv.gz"),
-        ("https://datasets.imdbws.com/title.crew.tsv.gz", "title.episode.tsv.gz"),
-        (
-            "https://datasets.imdbws.com/title.principals.tsv.gz",
-            "title.principals.tsv.gz",
-        ),
-        ("https://datasets.imdbws.com/title.ratings.tsv.gz", "title.ratings.tsv.gz"),
-    ]
     tasks = [loop.create_task(download(url, name, DOWNLOAD_DIR)) for url, name in urls]
     await asyncio.gather(*tasks, return_exceptions=True)
 
+logger = logging.getLogger(__name__)
 
-asyncio.run(main())
+confirm_prompt = input("You are about to download 2 GiB of data from IMDB. Are you sure? (Y/n): ")
+
+if confirm_prompt.lower() in ("y", ""):
+    logger.info(f"Downloading {len(DOWNLOAD_URLS)} files...")
+    Path(DOWNLOAD_DIR).mkdir(parents=True, exist_ok=True)
+    asyncio.run(downloader(DOWNLOAD_URLS))
+else:
+    logger.info(f"Okay, will not download anything.")
