@@ -1,0 +1,43 @@
+[
+    {
+        "name": "tconst",
+        "type": "STRING",
+        "mode": "REQUIRED",
+        "description": "alphanumeric unique identifier of the title"
+    },
+
+    {
+        "name": "ordering",
+        "type": "INT64",
+        "mode": "NULLABLE",
+        "description": "a number to uniquely identify rows for a given titleId"
+    },
+
+    {
+        "name": "nconst",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "alphanumeric unique identifier of the name/person"
+    },
+
+    {
+        "name": "category",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "the category of job that person was in"
+    },
+
+    {
+        "name": "job",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "the specific job title if applicable, else '\\N'"
+    }, 
+
+    { 
+        "name": "characters",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "the name of the character played if applicable, else '\\N'"
+    }
+]

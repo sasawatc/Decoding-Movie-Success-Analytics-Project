@@ -1,0 +1,43 @@
+[
+    {
+        "name": "nconst",
+        "type": "STRING",
+        "mode": "REQUIRED",
+        "description": "alphanumeric unique identifier of the name/person"
+    },
+
+    {
+        "name": "primaryName",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "name by which the person is most often credited"
+    },
+
+    {
+        "name": "birthYear",
+        "type": "INT64",
+        "mode": "NULLABLE",
+        "description": "in YYYY format"
+    },
+
+    {
+        "name": "deathYear",
+        "type": "INT64",
+        "mode": "NULLABLE",
+        "description": "in YYYY format if applicable, else '\\N'"
+    },
+
+    {
+        "name": "primaryProfession",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "the top-3 professions of the person (array of string)"
+    },
+
+    {
+        "name": "knownForTitles",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "titles the person is known for (array of string)"
+    }
+]
