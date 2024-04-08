@@ -6,3 +6,5 @@
 - Install Python 3.12
 - Install [Taskfile](https://taskfile.dev/installation/)
     - ```brew install go-task```
+
+

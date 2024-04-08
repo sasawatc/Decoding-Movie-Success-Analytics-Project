@@ -2,3 +2,4 @@ tqdm
 dbt-bigquery
 google-auth
 google-cloud-bigquery
+httpx
