@@ -7,13 +7,23 @@ tasks:
   init:
     desc: Init for local dev
     cmds:
-      - rm -rf .venv
+      # - rm -rf .venv
       - python --version && python -m venv .venv
       - .venv/bin/pip install --upgrade pip wheel
       - .venv/bin/pip install -r requirements.txt
-  shell:
+      - gcloud init
+
+  auth:
+    desc: Authenticate Google Cloud SDK
     cmds:
-      - source .venv/bin/activate
-  download_imdb:
+      - gcloud auth application-default login
+
+  download-source:
+    desc: Download data from sources
     cmds:
       - .venv/bin/python data-source-ingester/download_files.py
+
+  load-bq:
+    desc: Load source data into Google BigQuery
+    cmds:
+      - .venv/bin/python data-source-ingester/load_to_bq.py
