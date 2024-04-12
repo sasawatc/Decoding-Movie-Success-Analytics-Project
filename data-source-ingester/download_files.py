@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 logging.basicConfig(level=logging.INFO)
 
-DOWNLOAD_DIR = "data-source-ingester/downloads"
+DOWNLOAD_DIR = "data-source-ingester/downloads/imdb_noncommercial_datasets"
 
 DOWNLOAD_URLS = [
     ("https://datasets.imdbws.com/name.basics.tsv.gz", "name_basics.tsv.gz"),
