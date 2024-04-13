@@ -1,0 +1,6 @@
+sources:
+  - name: kaggle
+    schema: wju_kaggle
+
+    tables:
+      - name: the_devastator_imdb_movie_and_crew

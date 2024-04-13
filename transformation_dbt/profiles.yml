@@ -1,0 +1,9 @@
+transformation_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: school-and-small-projects-1412
+      dataset: custom_schema
+      threads: 4 

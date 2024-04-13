@@ -27,3 +27,8 @@ tasks:
     desc: Load source data into Google BigQuery
     cmds:
       - .venv/bin/python data-source-ingester/load_to_bq.py
+
+  dbt-bin:
+    desc: Run dbt `task dbt-bin -- compile`
+    cmds:
+      - pushd ./transformation_dbt && ../.venv/bin/dbt {{ .CLI_ARGS }} && popd
