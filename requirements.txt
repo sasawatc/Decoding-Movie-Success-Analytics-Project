@@ -4,3 +4,4 @@ humanfriendly
 dbt-bigquery
 google-auth
 google-cloud-bigquery
+kaggle

@@ -7,5 +7,5 @@
 
 SELECT
     * EXCEPT (genre_array)
-FROM {{ ref('stg_kaggle__imdb_movies_metadata') }}
+FROM {{ ref('int__dim_movies_usd') }}
 CROSS JOIN UNNEST(genre_array) AS genre

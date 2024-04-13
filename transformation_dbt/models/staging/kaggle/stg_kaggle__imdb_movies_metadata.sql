@@ -41,12 +41,15 @@ WITH
             metascore,
             reviews_from_users,
             reviews_from_critics
-        FROM {{ source('kaggle','the_devastator_imdb_movie_and_crew') }}
+        FROM {{ source('kaggle', 'the_devastator_imdb_movie_and_crew') }}
     ),
 
     final AS (
         SELECT
             *,
+            genre_array[SAFE_OFFSET(0)] AS genre_1,
+            genre_array[SAFE_OFFSET(1)] AS genre_2,
+            genre_array[SAFE_OFFSET(2)] AS genre_3,
             COALESCE(worldwide_gross_income_usd, usa_gross_income_usd) AS gross_income_usd
         FROM base
     )

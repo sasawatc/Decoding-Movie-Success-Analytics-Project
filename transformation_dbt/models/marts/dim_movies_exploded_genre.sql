@@ -15,5 +15,6 @@ SELECT
     director,
     production_company_consolidated,
     budget_usd,
-    gross_income_usd
-FROM {{ ref('int__dim_movies_exploded_genre_profitability') }}
+    gross_income_usd,
+    profit_usd
+FROM {{ ref('int__dim_movies_exploded_genre') }}
